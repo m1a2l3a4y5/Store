@@ -1,0 +1,289 @@
+﻿<Window x:Class="Store.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Store"
+        mc:Ignorable="d"
+        Title="Store" Height="450" Width="800" Loaded="Window_Loaded" x:Name="mainWin" Background="#434445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+            <Border CornerRadius="4" BorderBrush="Black" BorderThickness="1" TextBlock.FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <ContentPresenter  RecognizesAccessKey="True"></ContentPresenter>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.RowSpan="1" Grid.ColumnSpan="3" x:Name="menu1" Background="#434445">
+            <MenuItem Header="Файл" Width="43" Height="20">
+                <MenuItem Header="Выход" x:Name="Exit" Click="Exit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Обновить таблицы" x:Name="ResetDataBase" Click="ResetDataBase_Click"></MenuItem>
+            <MenuItem Header="Сменить тему" x:Name="ResetBackground" Click="ResetBackground_Click"></MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <TabItem Header="Категории" x:Name="tab1" Background="#434445">
+                <Grid x:Name="grid1" Background="#434445" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="0,0,0,0">
+                    <DataGrid x:Name="dGCategory" IsReadOnly="True" Grid.ColumnSpan="3" DataGrid.CanUserResizeColumns="False" 
+                                DataGrid.CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="0,10,10,60" Grid.RowSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код категории" Binding="{Binding CategoryId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Описание" Binding="{Binding Opisanie}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Grid.Column="3" Content="Сортировка А-Я" x:Name="btnSortCat" Click="btnSortCat_Click" Template="{StaticResource ButtonTemplate}"  HorizontalAlignment="Left" Margin="70,29,0,0" Grid.Row="1" VerticalAlignment="Top" Height="37"/>
+                    <GroupBox Grid.Column="3" Header="" Margin="21,21,40,35" BorderBrush="#434445" BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Content="Добавить" Template="{StaticResource ButtonTemplate}" x:Name="btnAddCategory" Click="btnAddCategory_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="70" Grid.Row="1"/>
+                            <Button Content="Редактировать" Template="{StaticResource ButtonTemplate}" x:Name="btnEditCategory" Click="btnEditCategory_Click" HorizontalAlignment="Left" Margin="46,0,0,0" VerticalAlignment="Center" Grid.Row="2" Height="26" Width="100" Grid.ColumnSpan="2"/>
+                            <Button Content="Удалить" Template="{StaticResource ButtonTemplate}" x:Name="DeleteCategory" Click="DeleteCategory_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Width="59" Grid.Column="1" Height="26"/>
+                            <Label Content="управления" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="54,18,0,0" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Label Content="Кнопки" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="19*"></ColumnDefinition>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="53*"></ColumnDefinition>
+                        <ColumnDefinition Width="53*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+
+
+            </TabItem>
+
+            <TabItem Header="Товары" x:Name="tab2" Background="#434445">
+                <Grid x:Name="grid2" Background="#434445">
+                    <ListView x:Name="listView" Background="#ffffff" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="11,19,196,179">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="163" Width="600">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="222"></ColumnDefinition>
+                                        <ColumnDefinition Width="233"></ColumnDefinition>
+                                        <ColumnDefinition Width="24"></ColumnDefinition>
+                                        <ColumnDefinition Width="71"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Image
+  Stretch="UniformToFill" Margin="32,0,35,-78" Source="{Binding PhotoFull}" Grid.RowSpan="3" />
+                                    <Label Content="Категория" Grid.Column="2" Margin="12,0,6,0" Grid.ColumnSpan="2"></Label>
+                                    <Label Content="Цена" Grid.Column="2" Margin="12,15,23,11" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1"></Label>
+                                    <Label Content="Количество в наличие" Grid.Column="2" Margin="12,23,6,-23" Grid.ColumnSpan="2" Grid.Row="2"></Label>
+                                    <TextBlock Text="{Binding ProductId}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+TextAlignment="Left" FontSize="25" FontWeight="Black" Grid.ColumnSpan="3" Margin="24,-2,-50,2"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" Grid.Row="2" Grid.Column="1" 
+                              TextAlignment="Left" Margin="25,0,0,0" />
+
+                                    <TextBlock Text="{Binding Opisanie}" Grid.Row="2" Grid.Column="1" 
+TextAlignment="Left" Margin="25,30,0,-42" />
+
+                                    <TextBlock Text="{Binding Price}" Grid.Row="2" Grid.Column="2" TextAlignment="Left" Margin="17,12,18,-13" Grid.ColumnSpan="2" ></TextBlock>
+                                    <TextBlock Text="{Binding CategoryId}" Grid.Column="2" TextAlignment="Left" Margin="17,0,16,0" Grid.Row="1" Grid.ColumnSpan="2" />
+                                    <TextBlock Text="{Binding KolvoVnalichie}" Grid.Column="2" TextAlignment="Left" Margin="17,45,7,-45" Grid.Row="2" Grid.ColumnSpan="2" />
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="btnTotalKol" Click="btnTotalKol_Click" Content="Общее количество товаров" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="98,287,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnTotalSum" Click="btnTotalSum_Click" Content="Общая сумма товаров" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="434,287,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnClearProduct" Click="btnClearProduct_Click" Content="Очистить" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="685,332,0,0" VerticalAlignment="Top"/>
+                    <GroupBox  Margin="616,19,10,208" BorderBrush="#434445" BorderThickness="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="управления" FontSize="14" FontStyle="Italic" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" Height="30" Grid.RowSpan="2"/>
+                            <Label Content="Кнопки" FontSize="14" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                            <Button Content="Добавить" Template="{StaticResource ButtonTemplate}" x:Name="btnAddProduct" Click="btnAddProduct_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+                            <Button Content="Редактировать" Template="{StaticResource ButtonTemplate}" x:Name="btnEditProduct" Click="btnEditProduct_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
+                            <Button Content="Удалить" Template="{StaticResource ButtonTemplate}" x:Name="DeleteProduct" Click="DeleteProduct_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4"/>
+                        </Grid>
+                    </GroupBox>
+                    <TextBox HorizontalAlignment="Left" Margin="128,260,0,0" x:Name="tbTotalKol" TextWrapping="Wrap" Background="#434445"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="447,260,0,0" x:Name="tbTotalSum" TextWrapping="Wrap" Background="#434445" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Общее количество товаров" HorizontalAlignment="Left" Margin="106,229,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Общая сумма товаров" HorizontalAlignment="Left" Margin="440,229,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Заказы" x:Name="tab3" Background="#434445">
+                <Grid Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="0,0,0,0" x:Name="grid3" Background="#434445">
+                    <DataGrid x:Name="dGZakazi" IsReadOnly="True" Grid.ColumnSpan="2" DataGrid.CanUserResizeColumns="False" 
+                DataGrid.CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="0,10,10,60" Grid.RowSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код заказа" Binding="{Binding OrderId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код пользователя" Binding="{Binding UserId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата заказа" Binding="{Binding DateZakaza,StringFormat=d}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Адрес доставки" Binding="{Binding AdresDostavki}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Grid.Column="3" Header="" Margin="21,21,40,35" BorderBrush="#434445" BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="управления" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="54,18,0,0" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Label Content="Кнопки" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2"/>
+                            <Button Content="Добавить" Template="{StaticResource ButtonTemplate}" x:Name="btnAddZakazi" Click="btnAddZakazi_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                            <Button Content="Редактировать" Template="{StaticResource ButtonTemplate}" x:Name="btnEditZakazi" Click="btnEditZakazi_Click" HorizontalAlignment="Left" Margin="48,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                            <Button Grid.Column="1" Content="Удалить" Template="{StaticResource ButtonTemplate}" x:Name="DeleteZakazi" Click="DeleteZakazi_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button Grid.Column="2" Content="Статус доставлен" x:Name="btnStatusDone" Click="btnStatusDone_Click" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="67,42,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <Button Grid.Column="2" Content="Заказы в первых двух месяцах" x:Name="btnFirstTwoMonth" Click="btnFirstTwoMonth_Click" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="24,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Корзина" x:Name="tab4" Background="#434445">
+                <Grid Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="0,0,0,0" x:Name="grid4" Background="#434445">
+                    <DataGrid x:Name="dGKorzina" IsReadOnly="True" Grid.ColumnSpan="2" DataGrid.CanUserResizeColumns="False" 
+                DataGrid.CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="0,10,10,60" Grid.RowSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код корзины" Binding="{Binding CartId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код пользователя" Binding="{Binding UserId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код товара" Binding="{Binding ProductId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество товара" Binding="{Binding Kolichestvo}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Grid.Column="3" Header="" Margin="21,21,40,35" BorderBrush="#434445" BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="управления" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="54,18,0,0" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Label Content="Кнопки" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2"/>
+                            <Button Content="Добавить" Template="{StaticResource ButtonTemplate}" x:Name="btnAddKorzina" Click="btnAddKorzina_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                            <Button Content="Редактировать" Template="{StaticResource ButtonTemplate}" x:Name="btnEditKorzina" Click="btnEditKorzina_Click" HorizontalAlignment="Left" Margin="48,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                            <Button Grid.Column="1" Content="Удалить" Template="{StaticResource ButtonTemplate}" x:Name="DeleteKorzina" Click="DeleteKorzina_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+
+
+
+            <TabItem Header="Пользователи" x:Name="tab5" Background="#434445">
+                <Grid Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="0,0,0,0" x:Name="grid5" Background="#434445">
+                    <DataGrid x:Name="dGUser" IsReadOnly="True" Grid.ColumnSpan="2" DataGrid.CanUserResizeColumns="False" 
+                DataGrid.CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="0,10,10,60" Grid.RowSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код пользователя" Binding="{Binding UserId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Пароль" Binding="{Binding Password}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Роль" Binding="{Binding Role}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата регистрации" Binding="{Binding RegistrationDate, StringFormat=d}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Grid.Column="3" Header="" Margin="21,21,40,35" BorderBrush="#434445" BorderThickness="2" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="управления" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="54,18,0,0" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Label Content="Кнопки" FontSize="14" FontStyle="Italic" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2"/>
+                            <Button Content="Добавить" Template="{StaticResource ButtonTemplate}" x:Name="btnAddUser"  Click="btnAddUser_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                            <Button Content="Редактировать" Template="{StaticResource ButtonTemplate}" x:Name="btnEditUser" Click="btnEditUser_Click" HorizontalAlignment="Left" Margin="48,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                            <Button Grid.Column="1" Content="Удалить" Template="{StaticResource ButtonTemplate}" x:Name="DeleteUser" Click="DeleteUser_Click" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <Button Content="Отобразить имена на А" x:Name="btnNameA" Click="btnNameA_Click" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="46,10,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Button Content="Вывести администраторов" x:Name="btnAdmin" Click="btnAdmin_Click" Template="{StaticResource ButtonTemplate}" HorizontalAlignment="Left" Margin="36,36,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+    </Grid>
+</Window>

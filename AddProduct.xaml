@@ -1,0 +1,44 @@
+﻿<Window x:Class="Store.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Store"
+        mc:Ignorable="d"
+        Title="AddProduct" Height="450" Width="500"
+        x:Name="WinAddProduct" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Loaded="WinAddProduct_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145*"></ColumnDefinition>
+            <ColumnDefinition Width="164*"></ColumnDefinition>
+            <ColumnDefinition Width="191*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="Добавить" x:Name="btnAddProduct" Click="btnAddProduct_Click" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="20" Width="58"/>
+        <Button Grid.Column="1" Content="Отмена" Click="Button_Click" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="20" Width="46"/>
+        <Button Grid.Column="2" Content="Добавить фото" x:Name="btnAddImage" Click="btnAddImage_Click" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="20" Width="87"/>
+        <Label Content="Название" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="62"/>
+        <Label Content="Описание" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" Grid.Row="1" Height="26" Width="66"/>
+        <Label Content="Цена" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0" Grid.Row="2" Height="26" Width="38"/>
+        <Label Content="Категория" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0" Grid.Row="3" Height="26" Width="66"/>
+        <Label Content="Количество в наличии" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Height="26" Width="134"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=Name}" x:Name="tbName" VerticalAlignment="Center" Width="120" Height="18"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=Opisanie}" x:Name="tbOpis" VerticalAlignment="Center" Width="120" Height="17"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=Price}" x:Name="tbPrice" VerticalAlignment="Top" Width="120" Margin="0,22,0,0" Height="18"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=KolvoVnalichie}" x:Name="tbKolvo" VerticalAlignment="Center" Width="120" Height="18"/>
+        <ComboBox Grid.Column="1" x:Name="cbCateg" SelectedItem="{Binding Path=Category}" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="120" Height="22"/>
+        <Label Grid.Column="2" Content="Фото" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="25" Width="37" Margin="0,1,0,0"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Source="{Binding Path=PhotoFull}"
+               Height="154" Margin="10,55,0,0" x:Name="ImgAdd" Grid.RowSpan="3" Grid.Row="1" 
+               VerticalAlignment="Top" Width="174"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="Store.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Store"
+        mc:Ignorable="d"
+        Title="AddUser" Height="450" Width="350" x:Name="WinAddUser" Loaded="WinAddUser_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="Добавить" x:Name="btnAddUser" Click="btnAddUser_Click" HorizontalAlignment="Left" Margin="62,0,0,0" Grid.Row="5" VerticalAlignment="Center"/>
+        <Button Content="Отмена" Click="Button_Click" HorizontalAlignment="Left" Margin="73,0,0,0" Grid.Row="5" VerticalAlignment="Center" Grid.Column="1"/>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Почта" HorizontalAlignment="Left" Margin="58,19,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="55,18,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label Content="Роль" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Center" Grid.Row="3"/>
+        <Label Content="Дата регистрации" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBox Grid.Column="1" x:Name="tbname" HorizontalAlignment="Center" Margin="0,31,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Grid.Column="1" x:Name="tbemail" HorizontalAlignment="Center" Margin="0,32,0,0" TextWrapping="Wrap" Text="{Binding Path=Email}" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+        <TextBox Grid.Column="1" x:Name="tbpassword"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=Password}" VerticalAlignment="Center" Width="120" Grid.Row="2"/>
+        <TextBox Grid.Column="1" x:Name="tbrole"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=Role}" VerticalAlignment="Center" Width="120" Grid.Row="3"/>
+        <DatePicker Grid.Column="1" x:Name="dpDate" SelectedDate="{Binding Path=RegistrationDate}" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
